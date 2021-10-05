@@ -2,9 +2,10 @@
 #include <stdlib.h>
 
 
-void mergeRanges(int values[], int startIndex, int midPoint, int endIndex) {
+void mergeRanges(int* values, int startIndex, int midPoint, int endIndex) {
   int rangeSize = endIndex - startIndex;
-  int destination[rangeSize];
+  int *destination;
+  destination = (int*) calloc(rangeSize,sizeof(int));  
   int firstIndex = startIndex;
   int secondIndex = midPoint;
   int copyIndex = 0;
@@ -31,10 +32,11 @@ void mergeRanges(int values[], int startIndex, int midPoint, int endIndex) {
     for (int i = 0; i < rangeSize; ++i) {
       values[i + startIndex] = destination[i];
     }
+    free(destination);
 }
 
 
-void mergesortRange(int values[], int  startIndex, int endIndex) {
+void mergesortRange(int* values, int  startIndex, int endIndex) {
   int rangeSize = endIndex-startIndex;
   if (rangeSize >= 2) {
     int midPoint = (startIndex + endIndex) / 2;
